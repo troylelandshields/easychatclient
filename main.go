@@ -17,8 +17,12 @@ func main() {
 
 	chatClient := easychat.JoinChatRoom("localhost", name)
 
-	go recv(chatClient)
+	go receiveMessagesLoop(chatClient)
 
+	sendMessagesLoop(chatClient)
+}
+
+func sendMessagesLoop(chatClient *easychat.ChatClient) {
 	for {
 		fmt.Print("> ")
 		msg := easyinput.TakeInput()
@@ -31,7 +35,7 @@ func main() {
 	}
 }
 
-func recv(chatClient *easychat.ChatClient) {
+func receiveMessagesLoop(chatClient *easychat.ChatClient) {
 
 	for {
 		msg, ok := chatClient.ReceiveMessage()
