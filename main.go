@@ -35,10 +35,7 @@ func main() {
 
 func receiveMessagesLoop(chatClient *easychat.ChatClient) {
 	for {
-		msg, ok := chatClient.ReceiveMessage()
-		if !ok {
-			return
-		}
+		msg := chatClient.ReceiveMessage()
 
 		fmt.Printf("\n[%s] %s: %s\n...> ",
 			msg.Time.Format("Jan 2, 3:04:05 PM"), msg.From, msg.Body)
