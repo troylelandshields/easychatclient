@@ -23,7 +23,6 @@ func main() {
 }
 
 func receiveMessagesLoop(chatClient *easychat.ChatClient) {
-
 	for {
 		msg, ok := chatClient.ReceiveMessage()
 		if !ok {
