@@ -8,14 +8,21 @@ import (
 )
 
 func main() {
-
-	fmt.Print("Enter your name: ")
-	name := easyinput.TakeInput()
-	if name == "" {
+	fmt.Println("What's the IP address of the chat server?")
+	ipAddress := easyinput.TakeInput()
+	if ipAddress == "" {
+		fmt.Println("You have to give an IP address to join a chat room!")
 		return
 	}
 
-	chatClient := easychat.JoinChatRoom("localhost", name)
+	fmt.Println("Enter your name: ")
+	name := easyinput.TakeInput()
+	if name == "" {
+		fmt.Println("You must give a name!")
+		return
+	}
+
+	chatClient := easychat.JoinChatRoom(ipAddress, name)
 
 	go receiveMessagesLoop(chatClient)
 
