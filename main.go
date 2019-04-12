@@ -22,19 +22,6 @@ func main() {
 	sendMessagesLoop(chatClient)
 }
 
-func sendMessagesLoop(chatClient *easychat.ChatClient) {
-	for {
-		fmt.Print("> ")
-		msg := easyinput.TakeInput()
-
-		if msg == "" {
-			continue
-		}
-
-		chatClient.SendMessage(msg)
-	}
-}
-
 func receiveMessagesLoop(chatClient *easychat.ChatClient) {
 
 	for {
@@ -45,5 +32,18 @@ func receiveMessagesLoop(chatClient *easychat.ChatClient) {
 
 		fmt.Printf("\n[%s] %s: %s\n...> ",
 			msg.Time.Format("Jan 2, 3:04:05 PM"), msg.From, msg.Body)
+	}
+}
+
+func sendMessagesLoop(chatClient *easychat.ChatClient) {
+	for {
+		fmt.Print("> ")
+		msg := easyinput.TakeInput()
+
+		if msg == "" {
+			continue
+		}
+
+		chatClient.SendMessage(msg)
 	}
 }
