@@ -22,7 +22,11 @@ func main() {
 		return
 	}
 
-	chatClient := easychat.JoinChatRoom(ipAddress, name)
+	chatClient, err := easychat.JoinChatRoom(ipAddress, name)
+	if err != nil {
+		fmt.Println("Error occurred when joining chatroom", err.Error())
+		return
+	}
 
 	go receiveMessagesLoop(chatClient)
 
